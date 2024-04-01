@@ -11,5 +11,8 @@ export default NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  adapter: FirebaseAdapter(() => useFirebase()), // Wrap useFirebase in a function
+  adapter: FirebaseAdapter(async () => {
+    const firebaseInstance = await useFirebase();
+    return firebaseInstance;
+  }),
 });
