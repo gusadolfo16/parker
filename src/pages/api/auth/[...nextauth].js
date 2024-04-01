@@ -1,12 +1,11 @@
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
-import { firebaseConfig } from '../../firebaseConfig'; // Importa la configuración de Firebase
+import GoogleProvider from "next-auth/providers/google";
+import { firebaseConfig } from './firebaseConfig'; // Importa la configuración de Firebase
 
 export default NextAuth({
   providers: [
-    Providers.Google({
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
     // Puedes agregar otros proveedores aquí, como Providers.Facebook, Providers.Twitter, etc.
   ],
