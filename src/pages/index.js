@@ -1,11 +1,15 @@
-// pages/index.js
+import { useSession, signIn, signOut } from "next-auth/react"
 
-export default function Home() {
-    return (
-      <div>
-        <h1>Bienvenido a mi Aplicación</h1>
-        <p>¡Esta es una página inicial simple!</p>
-      </div>
-    );
+export default function Component() {
+  const { data: session } = useSession()
+  if(session) {
+    return <>
+      Signed in as {session.user.email} <br/>
+      <button onClick={() => signOut()}>Sign out</button>
+    </>
   }
-  
+  return <>
+    Not signed in <br/>
+    <button onClick={() => signIn()}>Sign in</button>
+  </>
+}

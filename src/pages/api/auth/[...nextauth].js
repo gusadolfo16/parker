@@ -1,5 +1,6 @@
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { firebaseConfig } from './firebaseConfig'; // Importa la configuración de Firebase
+import { firebaseConfig } from '../firebaseConfig'; // Importa la configuración de Firebase
 
 export default NextAuth({
   providers: [
