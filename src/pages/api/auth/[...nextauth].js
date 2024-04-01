@@ -8,7 +8,7 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      redirectUri: 'https://parker-cc78y29yy-pusadolfos-projects.vercel.app/api/auth/callback/google', // Replace with your domain
+      redirectUri: process.env.GOOGLE_REDIRECT_URL, // Replace with your domain
     }),
     // You can add other providers here
   ],
