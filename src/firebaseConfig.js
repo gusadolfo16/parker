@@ -1,9 +1,7 @@
 import firebase from 'firebase/app';
-import 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
 
-// firebaseConfig.js
+require('dotenv').config();
+
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -15,12 +13,10 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  
+  firebase.initializeApp(firebaseConfig);
+
   const auth = firebase.auth();
   const storage = firebase.storage();
-  const firestore = firebase.firestore(); // Initialize Firestore instance
+  const firestore = firebase.firestore();
   
   export { auth, storage, firestore };
