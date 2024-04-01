@@ -1,5 +1,3 @@
-import firebase from 'firebase/app';
-
 require('dotenv').config();
 
 const firebaseConfig = {
@@ -13,6 +11,4 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
-  firebase.initializeApp(firebaseConfig);
-  
-  export default firebase;
+  export default firebaseConfig;

@@ -1,30 +1,22 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { storage } from '../firebaseConfig'; // Import storage instance
-import Image from 'next/image'; // Import Image component
-import FilterBar from './FilterBar'; // Import FilterBar component
+import { useFirebase } from '../utils/useFirebase'; // Import the custom hook
+import Image from 'next/image';
+import FilterBar from './FilterBar';
 
 const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages, selectedFilter }) => {
   const [images, setImages] = useState([]);
+  const firebase = useFirebase(); // Access the initialized Firebase instance
 
   useEffect(() => {
     const fetchImages = async () => {
-      if (!user) return; // Only fetch if user is logged in
+      if (!user || !firebase) return; // Only fetch if user is logged in and Firebase is initialized
 
-      const listRef = storage.ref().child(`user-images/${user.uid}`);
-      const images = await listRef.listAll(); // Get a list of all image references for the user
-
-      const imageUrls = await Promise.all(
-        images.items.map(async (imageRef) => {
-          const imageUrl = await getDownloadURL(imageRef);
-          return { url: imageUrl, selected: false, metadata: {} }; // Add metadata property
-        })
-      );
-
-      setImages(imageUrls);
+      const listRef = firebase.storage().ref().child(`user-images/${user.uid}`);
+      // ... rest of your image fetching logic using firebase.storage()
     };
 
     fetchImages();
-  }, [user]);
+  }, [user, firebase]);
 
   const filteredImages = useMemo(() => {
     if (selectedFilter === 'all') {

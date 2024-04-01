@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { firebaseConfig } from "../../../firebaseConfig"; // Import Firebase config
-import { FirebaseAdapter } from "@next-auth/firebase-adapter";
+import { useFirebase } from '../utils/useFirebase'; // Import the custom hook
 
 export default NextAuth({
   providers: [
@@ -13,5 +12,5 @@ export default NextAuth({
     // You can add other providers here (e.g., Facebook, GitHub)
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  adapter: FirebaseAdapter(firebaseConfig), // Use adapter directly with firebaseConfig
+  adapter: FirebaseAdapter(useFirebase()), // Use the hook to access Firebase
 });
