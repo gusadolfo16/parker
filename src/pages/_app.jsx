@@ -3,21 +3,12 @@ import { createRoot } from 'react-dom/client';
 import { FirebaseAdapter } from '@next-auth/firebase-adapter';
 import { NextAuthProvider } from 'next-auth';
 
-import { useFirebase } from '../utils/useFirebase'; // Import the custom hook
+import { useInitFirebase } from '../utils/useInitFirebase'; // Import the new hook
 
 import '../styles/globals.css';
 
-function Parker({ Component, pageProps }) {
-  const [firebaseInstance, setFirebaseInstance] = useState(null);
-
-  useEffect(() => {
-    const initFirebase = async () => {
-      const app = await useFirebase(); // Call the useFirebase hook to initialize Firebase
-      setFirebaseInstance(app);
-    };
-
-    initFirebase();
-  }, []);
+function MyApp({ Component, pageProps }) {
+  const firebaseInstance = useInitFirebase(); // Call the custom hook
 
   if (!firebaseInstance) {
     return <div>Loading Firebase...</div>;
@@ -30,4 +21,4 @@ function Parker({ Component, pageProps }) {
   );
 }
 
-export default Parker;
+export default MyApp;
