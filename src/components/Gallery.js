@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { storage } from '../firebaseConfig'; // Import storage instance
 import Image from 'next/image'; // Import Image component
+import FilterBar from './FilterBar'; // Import FilterBar component
 
 const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages, selectedFilter }) => {
   const [images, setImages] = useState([]);
