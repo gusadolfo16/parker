@@ -3,6 +3,7 @@ import Gallery from '../components/Gallery';
 import Navbar from '../components/Navbar';
 import { getUser } from '../utils/auth'; // Import getUser
 import ImageSelection from '../components/ImageSelection'; // Import ImageSelection
+import FilterBar from './FilterBar'; // Import FilterBar component
 
 const Home = () => {
   const [user, setUser] = useState(null);
