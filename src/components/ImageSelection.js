@@ -1,9 +1,10 @@
 import React from 'react';
+import Image from 'next/image'; // Import Image component
 
 const ImageSelection = ({ imageUrl, onSelected }) => {
   return (
     <div className="image-selection">
-      <img src={imageUrl} alt="Selected Image" />
+      <Image src={imageUrl} alt="Selected Image" />
       <div className="image-selection-actions">
         <button onClick={() => onSelected(imageUrl)}>Select/Unblock</button>
         {/* Add button for additional actions (optional) */}

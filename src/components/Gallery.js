@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { storage } from '../firebaseConfig'; // Import storage instance
-import { useMemo } from 'react'; // For memoized filter function
+import Image from 'next/image'; // Import Image component
 
-const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages }) => {
+const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages, selectedFilter }) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages }) =
   }, [user]);
 
   const filteredImages = useMemo(() => {
-    // Implement your filtering logic here based on selected filter and image metadata
     if (selectedFilter === 'all') {
       return images;
     } else {
@@ -48,7 +47,7 @@ const Gallery = ({ user, onImageSelected, onImageUnselected, selectedImages }) =
       <div className="gallery-grid">
         {filteredImages.map((image) => (
           <div key={image.url} className={`gallery-item ${selectedImages.has(image.url) ? 'selected' : ''}`}>
-            <img src={image.url} alt="Gallery Image" onClick={() => handleImageClick(image.url, selectedImages.has(image.url))} />
+            <Image src={image.url} alt="Gallery Image" onClick={() => handleImageClick(image.url, selectedImages.has(image.url))} />
             {selectedImages.has(image.url) && <button onClick={() => handleImageClick(image.url, true)}>Unblock</button>}
           </div>
         ))}
