@@ -5,12 +5,8 @@ export function useInitFirebase() {
   const [firebaseInstance, setFirebaseInstance] = useState(null);
 
   useEffect(() => {
-    const initFirebase = async () => {
-      const app = await useFirebase();
-      setFirebaseInstance(app);
-    };
-
-    initFirebase();
+    const app = await useFirebase(); // Call useFirebase directly here
+    setFirebaseInstance(app);
   }, []);
 
   return firebaseInstance;
