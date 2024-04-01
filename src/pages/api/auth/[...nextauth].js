@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { useFirebase } from '../utils/useFirebase'; // Import the custom hook
+import { useFirebase } from '../../utils/useFirebase'; // Import the custom hook
 
 export default NextAuth({
   providers: [
