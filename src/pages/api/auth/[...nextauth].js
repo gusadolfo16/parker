@@ -12,5 +12,5 @@ export default NextAuth({
     // You can add other providers here (e.g., Facebook, GitHub)
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  adapter: FirebaseAdapter(useFirebase()), // Use the hook to access Firebase
+  adapter: FirebaseAdapter(() => useFirebase()), // Wrap useFirebase in a function
 });
