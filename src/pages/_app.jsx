@@ -1,11 +1,33 @@
-import { SessionProvider } from "next-auth/react"
+import { useState, useEffect } from 'react';
+import { createRoot } from 'react-dom/client';
+import { FirebaseAdapter } from '@next-auth/firebase-adapter';
+import { NextAuthProvider } from 'next-auth';
 
-export default function App({
-  Component, pageProps: { session, ...pageProps }
-}) {
+import { useFirebase } from '../utils/useFirebase'; // Import the custom hook
+
+import '../styles/globals.css';
+
+function Parker({ Component, pageProps }) {
+  const [firebaseInstance, setFirebaseInstance] = useState(null);
+
+  useEffect(() => {
+    const initFirebase = async () => {
+      const app = await useFirebase(); // Call the useFirebase hook to initialize Firebase
+      setFirebaseInstance(app);
+    };
+
+    initFirebase();
+  }, []);
+
+  if (!firebaseInstance) {
+    return <div>Loading Firebase...</div>;
+  }
+
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps}/>
-    </SessionProvider>
-  )
+    <NextAuthProvider adapter={FirebaseAdapter(firebaseInstance)}>
+      <Component {...pageProps} />
+    </NextAuthProvider>
+  );
 }
+
+export default Parker;

@@ -1,6 +1,5 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { useFirebase } from '../../utils/useFirebase'; // Import the custom hook
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 export default NextAuth({
   providers: [
@@ -11,8 +10,5 @@ export default NextAuth({
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  adapter: FirebaseAdapter(async () => {
-    const firebaseInstance = await useFirebase();
-    return firebaseInstance;
-  }),
+  // Removed the adapter since Firebase initialization is done in _app.js
 });
