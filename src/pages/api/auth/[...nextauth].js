@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { firebaseConfig } from '../../../firebaseConfig'; // Importa la configuración de Firebase
+import { firebaseConfig } from '../../../firebaseConfig'; // Import Firebase config
 
 export default NextAuth({
   providers: [
@@ -9,10 +9,8 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       redirectUri: 'https://parker-cc78y29yy-pusadolfos-projects.vercel.app/api/auth/callback/google',
     }),
-    // Puedes agregar otros proveedores aquí, como Providers.Facebook, Providers.Twitter, etc.
+    // You can add other providers here
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  firebase: {
-    ...firebaseConfig, // Configuración de Firebase
-  },
+  adapter: require('@next-auth/firebase-adapter')(firebaseConfig), // Use require for adapter
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { signin } from 'next-auth/client';
+import { signin } from 'next-auth';
 import AuthForm from '../components/AuthForm';
 
 const LoginPage = () => {
