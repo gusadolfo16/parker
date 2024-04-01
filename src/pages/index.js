@@ -1,9 +1,9 @@
+import FilterBar from './FilterBar'; // Import FilterBar component
 import React, { useState, useEffect } from 'react';
 import Gallery from '../components/Gallery';
 import Navbar from '../components/Navbar';
 import { getUser } from '../utils/auth'; // Import getUser
 import ImageSelection from '../components/ImageSelection'; // Import ImageSelection
-import FilterBar from './FilterBar'; // Import FilterBar component
 
 const Home = () => {
   const [user, setUser] = useState(null);
