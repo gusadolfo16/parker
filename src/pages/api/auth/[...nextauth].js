@@ -9,7 +9,6 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       redirectUri: process.env.GOOGLE_REDIRECT_URL, // Replace with your domain
     }),
-    // You can add other providers here (e.g., Facebook, GitHub)
   ],
   secret: process.env.NEXTAUTH_SECRET,
   adapter: FirebaseAdapter(() => useFirebase()), // Wrap useFirebase in a function
