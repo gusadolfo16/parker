@@ -1,4 +1,4 @@
-import FilterBar from './FilterBar'; // Import FilterBar component
+import FilterBar from '../FilterBar'; // Import FilterBar component
 import React, { useState, useEffect } from 'react';
 import Gallery from '../components/Gallery';
 import Navbar from '../components/Navbar';
